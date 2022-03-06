@@ -31,5 +31,6 @@
 *.out
 *.app
 
+#specific files
 template.cpp
 .vscode
