@@ -3,25 +3,31 @@ using namespace std;
 
 class Solution {
 public:
-    void twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum(vector<int>& nums, int target) {
+       
+        vector<int> v;
         
         for(int i{0};i<nums.size();++i){
-            
+         
             int c=target-nums[i];
     
             auto it=find(nums.begin()+i+1,nums.end(),c);
 
             if(it!=nums.end()){
-                cout<<i<<" "<<(it-nums.begin());
+                v.push_back(i);
+                v.push_back(it-nums.begin());
                 break;
             }
         }
+        
+        return v;
     }
 };
 
 int main(){
     Solution s;
-    vector<int>v{2,15,11,7};
+    vector<int>v{2,7,11,15};
 
-    s.twoSum(v,9);
+    for(auto& it:s.twoSum(v,9))
+        cout<<it<<" ";
 }
