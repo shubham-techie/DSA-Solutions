@@ -12,13 +12,15 @@ public:
         left[0]=height[0];
         right[n-1]=height[n-1];
         
-        for(int i=1;i<n;++i)
+        int i=1,j=n-2;
+        while(i<n){
             left[i]=max(left[i-1],height[i]);
+            right[j]=max(right[j+1],height[j]);  
+            ++i;--j;
+        }
         
-        for(int i=n-2;i>=0;--i)
-            right[i]=max(right[i+1],height[i]);
         
-        for(int i=0;i<n;++i)
+        for(i=0;i<n;++i)
             sum+=min(left[i],right[i])-height[i];
         
         return sum;
