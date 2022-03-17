@@ -1,6 +1,7 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
+       /*
         unordered_map<char,int> map;
         int cnt{};
         
@@ -18,6 +19,16 @@ public:
             if(flag)
                 ++cnt;
         }
+        */
+        
+        int map[26]{0};
+        int cnt{};
+        
+        for(auto& ch:allowed)
+            ++map[ch-'a'];
+        
+        for(auto& word:words)
+            cnt+=all_of(word.begin(),word.end(),[&](char ch){return map[ch-'a'];});
         return cnt;
     }
 };
