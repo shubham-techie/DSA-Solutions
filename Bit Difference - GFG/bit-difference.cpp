@@ -14,10 +14,14 @@ class Solution{
     int countBitsFlip(int a, int b){
         
         // Your logic here
-        b=a^b;
-        bitset<32>bit(b);
-        
-        return bit.count();
+       int cnt{};
+       b=a^b;
+       
+       while(b){
+           cnt+=b&1;
+           b>>=1;
+       }
+       return cnt;
     }
 };
 
