@@ -13,7 +13,7 @@ public:
             }
             
             if(cnt%3)
-                dec|=(1<<i);
+                dec+=(1<<i);
         }
 
 //         int a[32]{0};
