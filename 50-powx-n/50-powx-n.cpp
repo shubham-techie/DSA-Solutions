@@ -5,7 +5,7 @@ public:
         double res={1};
         
         while(n){
-            if(n&1)
+            if(n%2)
                 res=n>0?res*x:res/x;
             
             x*=x;
