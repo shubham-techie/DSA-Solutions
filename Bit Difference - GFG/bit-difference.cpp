@@ -18,8 +18,10 @@ class Solution{
        b=a^b;
        
        while(b){
-           cnt+=b&1;
-           b>>=1;
+        //   cnt+=b&1;
+        //   b/>>=1;
+        b&=(b-1);
+        ++cnt;
        }
        return cnt;
     }
