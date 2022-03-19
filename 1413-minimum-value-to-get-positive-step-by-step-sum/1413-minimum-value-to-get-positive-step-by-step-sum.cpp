@@ -5,7 +5,8 @@ public:
         
         for(int& it:nums){
             sum+=it;
-            min=min>sum?sum:min;
+            
+            if(min>sum) min=sum;
         }
         
         return 1-min;
