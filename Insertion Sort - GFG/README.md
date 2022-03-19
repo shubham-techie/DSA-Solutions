@@ -1,5 +1,5 @@
 # Insertion Sort
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">The task is to complete the&nbsp;<strong>insert()</strong> function which is used to implement Insertion Sort. </span></p>
 
