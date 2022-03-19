@@ -44,21 +44,21 @@ int main()
 
     void insert(int arr[], int i)
     {
-        // Your code here  
+        // Your code here 
+        int tmp=arr[i];
+        int j=i-1;
+        while(j>=0 && arr[j]>tmp){
+                arr[j+1]=arr[j];
+                --j;
+            }
+            arr[j+1]=tmp;
     }
     //Function to sort the array using insertion sort algorithm.
     void insertionSort(int arr[], int n)
     {
         //code here
         for(int i=1;i<n;++i){
-            int tmp=arr[i];
-            int j=i-1;
-            
-            while(j>=0 && arr[j]>tmp){
-                arr[j+1]=arr[j];
-                --j;
-            }
-            arr[j+1]=tmp;
+            insert(arr,i);
         }
     }
 
