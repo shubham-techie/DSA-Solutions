@@ -1,13 +1,13 @@
 class Solution {
 public:
      int findComplement(int num) {
-        long powerof2s = 2, temp = num;
-        
-        while(temp>>1) {
-            temp >>= 1;
-            powerof2s <<= 1;
-        }
-        
-        return powerof2s - num - 1;
+       
+         long powerOf2s{2},tmp{num};
+         
+         while(tmp>>1){
+             tmp>>=1;
+             powerOf2s<<=1;
+         }
+         return powerOf2s-1-num;
     }
 };
