@@ -12,15 +12,17 @@ public:
         
         sort(vp.begin(),vp.end());
         
-        int cnt{};
-        for(auto& it:vp){
-            if(k>=it){
-                k-=it;
-                ++cnt;
+        int cnt=vp.size();
+        i=0;
+        while(i<vp.size() && k>0){
+            --vp[i];
+            --k;
+            if(!vp[i]){
+                --cnt;
+                ++i;
             }
-            else
-                return vp.size()-cnt;
         }
-        return vp.size()-cnt;
+        
+        return cnt;
     }
 };
