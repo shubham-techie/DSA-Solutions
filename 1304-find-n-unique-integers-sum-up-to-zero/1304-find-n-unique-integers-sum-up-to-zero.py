@@ -1,15 +1,12 @@
-class Solution {
-public:
-    vector<int> sumZero(int n) {
-        vector<int> v(n);
-        int j{n-1};
+class Solution:
+    def sumZero(self, n: int) -> List[int]:
+        v=[]
         
-        for(int i=1;i<=n/2;++i,--j){
-          v[i-1]=i;
-          v[j]=0-i;
-        }
-        if(n&1) v[j]=0;
+        for i in range(1,n//2+1):
+            v.append(i)
+            v.append(-i)
         
-        return v;
-    }
-};
+        if n&1:
+            v.append(0)
+        return v
+        
