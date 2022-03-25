@@ -1,23 +1,24 @@
 class Solution {
 public:
+    int digitSum(int n){
+        if(n==0) return 0;
+        return n%10+digitSum(n/10);
+    }
+    
     int countBalls(int ll, int hl) {
-        unordered_map<int,int> map;
+        int map[46]={};
+        int sum{digitSum(ll)};
+        ++map[sum];
+        int mx={1};
         
-        for(;ll<=hl;++ll){
-            int tmp=ll;
-            int sum{};
-            while(tmp){
-                sum+=tmp%10;
-                tmp/=10;
-            }
+        for(++ll;ll<=hl;++ll){
+            if(ll%10==0) sum=digitSum(ll);
+            else ++sum;
+            
             ++map[sum];
+            mx=max(mx,map[sum]);
         }
         
-        multimap<int,int>mm;
-        for(auto& it:map)
-            mm.insert({it.second,it.first});
-        
-        auto i=mm.rbegin();
-        return i->first;
+        return mx;
     }
 };
