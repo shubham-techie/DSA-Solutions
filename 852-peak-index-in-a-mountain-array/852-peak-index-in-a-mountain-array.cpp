@@ -1,6 +1,8 @@
 class Solution {
 public:
     int peakIndexInMountainArray(vector<int>& arr) {
+        return max_element(arr.begin(),arr.end())-arr.begin();
+       /*
         int n=arr.size();
         int low{1},high{n-2};
         
@@ -15,5 +17,6 @@ public:
                 low=mid+1;
         }
         return -1;
+        */
     }
 };
