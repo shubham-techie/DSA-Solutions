@@ -62,13 +62,12 @@ struct pair getMnMx(long long arr[],int low,int high){
         p.max=ptmp2.max;
         
    return p;
-   
 }
 
 struct pair getMinMax(long long int arr[], long long int n) {
    
    struct pair p;
-   /*
+   /* Method 1: Linear search
    p.min=INT_MAX;
    p.max=INT_MIN;
    
@@ -80,6 +79,40 @@ struct pair getMinMax(long long int arr[], long long int n) {
    return p;
    */
    
-   //Tournament method
+   /* Method 2: Tournament method
    return getMnMx(arr,0,n-1);
+   */
+   
+   //Method 3: Comparsion pairs
+   int i;
+   
+   if(n&1){
+       p.min=p.max=arr[0];
+       i=1;
+   }
+   
+   else if(!(n&1)){
+       if(arr[0]>arr[1]){
+           p.max=arr[0];
+           p.min=arr[1];
+       }
+       else{
+           p.max=arr[1];
+           p.min=arr[0];
+       }
+       i=2;
+   }
+   
+   for(;i<n-1;i+=2){
+       if(arr[i]>arr[i+1]){
+           if(arr[i]>p.max) p.max=arr[i];
+           if(arr[i+1]<p.min) p.min=arr[i+1];
+       }
+       else{
+           if(arr[i+1]>p.max) p.max=arr[i+1];
+           if(arr[i]<p.min) p.min=arr[i];
+       }
+   }
+   
+   return p;
 }
