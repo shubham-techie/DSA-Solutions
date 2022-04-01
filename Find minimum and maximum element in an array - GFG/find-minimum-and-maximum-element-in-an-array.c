@@ -28,51 +28,40 @@ int main() {
 // User function Template for C
 #include<limits.h>
 struct pair getMnMx(long long arr[],int low,int high){
-   struct pair minmax, mml, mmr;    
-    int mid;
-     
-    // If there is only one element
-    if (low == high)
-    {
-        minmax.max = arr[low];
-        minmax.min = arr[low];    
-        return minmax;
-    }
-     
-    // If there are two elements
-    if (high == low + 1)
-    {
-        if (arr[low] > arr[high])
-        {
-            minmax.max = arr[low];
-            minmax.min = arr[high];
-        }
-        else
-        {
-            minmax.max = arr[high];
-            minmax.min = arr[low];
-        }
-        return minmax;
-    }
-     
-    // If there are more than 2 elements
-    mid = (low + high) / 2;
-    mml = getMnMx(arr, low, mid);
-    mmr = getMnMx(arr, mid + 1, high);
-     
-    // Compare minimums of two parts
-    if (mml.min < mmr.min)
-        minmax.min = mml.min;
+    struct pair p,ptmp1,ptmp2;
+   
+   if(low==high){
+       p.min=p.max=arr[low];
+       return p;
+   }
+   
+   if(low+1==high){
+       if(arr[low]>arr[high]){
+           p.max=arr[low];
+           p.min=arr[high];
+       }
+       else{
+           p.min=arr[low];
+           p.max=arr[high];
+       }
+       return p;
+   }
+   
+   int mid=(low+high)/2;
+   ptmp1=getMnMx(arr,low,mid);
+   ptmp2=getMnMx(arr,mid+1,high);
+   
+   if(ptmp1.min<ptmp2.min)
+       p.min=ptmp1.min;
     else
-        minmax.min = mmr.min;    
-     
-    // Compare maximums of two parts
-    if (mml.max > mmr.max)
-        minmax.max = mml.max;
+        p.min=ptmp2.min;
+    
+    if(ptmp1.max>ptmp2.max)
+       p.max=ptmp1.max;
     else
-        minmax.max = mmr.max;    
-     
-    return minmax;
+        p.max=ptmp2.max;
+        
+   return p;
    
 }
 
