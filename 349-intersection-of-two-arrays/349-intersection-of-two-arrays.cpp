@@ -55,18 +55,21 @@ public:
         return res;
         */
         
-        // Method 2: Binary search
+        /* Method 2: Binary search on higher size vector for each element in smaller size vector
         vector<int> res{};
          sortArray(nums1);
         sortArray(nums2);
         
         if(nums1.size()>nums2.size())
-            res=findIntersection(nums2, nums1);
-        else
             res=findIntersection(nums1, nums2);
+        else
+            res=findIntersection(nums2, nums1);
         
         return res;
-       /*
+        */
+        
+       
+        /* Method 3: two pointers 
         sortArray(nums1);
         sortArray(nums2);
         
@@ -91,5 +94,17 @@ public:
         
         return res;
         */
+        
+        // Method 4: using set
+        unordered_set<int> s(nums1.begin(),nums1.end());
+        vector<int> res{};
+        
+        for(int& i:nums2)
+            if(s.count(i)){
+                res.emplace_back(i);
+                s.erase(i);
+            }
+        
+            return res;
     }
 };
