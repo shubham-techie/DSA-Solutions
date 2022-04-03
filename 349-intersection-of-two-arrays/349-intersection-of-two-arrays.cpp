@@ -61,9 +61,9 @@ public:
         sortArray(nums2);
         
         if(nums1.size()>nums2.size())
-            res=findIntersection(nums1, nums2);
-        else
             res=findIntersection(nums2, nums1);
+        else
+            res=findIntersection(nums1, nums2);
         
         return res;
        /*
