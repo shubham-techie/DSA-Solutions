@@ -5,6 +5,21 @@ public:
     }
     
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        int cntArray[1001]{};
+        vector<int> res{};
+        
+        for(int& i:nums1)
+            if(!cntArray[i])
+                ++cntArray[i];
+        
+        for(int& i:nums2)
+            if(cntArray[i]){
+                res.emplace_back(i);
+                --cntArray[i];
+            }
+        
+        return res;
+       /*
         sortArray(nums1);
         sortArray(nums2);
         
@@ -28,5 +43,6 @@ public:
         
         
         return res;
+        */
     }
 };
