@@ -22,9 +22,8 @@ public:
         int maxSum{INT_MIN}, sum{};
         
         for(int& i:nums){
-            sum+=i;
+            sum=max(sum+i,i);
             maxSum=max(sum,maxSum);
-            sum= max(sum,0);
         }
         
         return maxSum;
