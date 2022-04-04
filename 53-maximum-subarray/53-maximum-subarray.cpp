@@ -18,12 +18,13 @@ public:
         return maxSum;
         */
         
+        // Method 2: Kadane's Algorithm
         int maxSum{INT_MIN}, sum{};
         
         for(int& i:nums){
             sum+=i;
             maxSum=max(sum,maxSum);
-            sum= sum<0? 0:sum;
+            sum= max(sum,0);
         }
         
         return maxSum;
