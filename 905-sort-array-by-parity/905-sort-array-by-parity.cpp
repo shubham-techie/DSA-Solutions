@@ -25,8 +25,8 @@ public:
                 --h;
             }
             
-            else if(!(nums[l]&1))  ++l;
-            else if(nums[h]&1)     --h;
+           if (!(nums[l]&1))  ++l;
+            if (nums[h]&1)     --h;
         }
         
         return nums;
