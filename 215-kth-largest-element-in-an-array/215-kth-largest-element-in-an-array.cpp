@@ -3,6 +3,7 @@ public:
     int partition(vector<int>& v, int left, int right){
         
         int i{left},pivot{v[right]};
+        
         for(int j=left;j<right;++j){
             if(v[j]>=pivot){
                 swap(v[j],v[i]);
@@ -11,6 +12,21 @@ public:
         }
         swap(v[i],v[right]);
         return i;
+    }
+    
+    int quickSelect(vector<int>& nums, int k,int left,int right){
+         
+        int idx{partition(nums,left,right)};
+     
+            if(idx==k-1)
+                return nums[idx];
+        
+            if(idx>k-1)
+               return quickSelect(nums,k, left,idx-1);
+            
+            return quickSelect(nums,k, idx+1,right);
+        
+        return INT_MIN;
     }
     
     int findKthLargest(vector<int>& nums, int k) {
@@ -47,19 +63,6 @@ public:
         
         
         // Method 4: Quick Select
-        
-        int idx{},left{},right=nums.size()-1;
-        
-        while(1){
-            idx= partition(nums,left,right);
-            
-            if(idx==k-1)
-                break;
-            else if(idx>k-1)
-                right=idx-1;
-            else
-                left=idx+1;
-        }
-        return nums[idx];
+       return quickSelect(nums,k,0 ,nums.size()-1);
     }
 };
