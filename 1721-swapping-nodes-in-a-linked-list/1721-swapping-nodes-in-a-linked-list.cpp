@@ -11,6 +11,8 @@
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
+        /* Method 1: Counting elements and swapping
+        
         ListNode *tmp{head},*pt1{},*pt2{};
         int n{}, pos1{k},pos2{};
         
@@ -32,6 +34,25 @@ public:
         
         swap(pt1->val,pt2->val);
         return head;
+        */
         
+        
+        // Method 2: two pointer approach
+        ListNode *ptr1{},*ptr2{};
+        
+        for(auto tmp=head;tmp!=nullptr;tmp=tmp->next){
+            if(k){
+                --k;
+                ptr1=tmp;
+                ptr2=k==0?head:nullptr;
+                continue;
+            }
+            
+            if(!k)
+                ptr2=ptr2->next;
+        }
+        
+        swap(ptr1->val,ptr2->val);
+        return head;
     }
 };
