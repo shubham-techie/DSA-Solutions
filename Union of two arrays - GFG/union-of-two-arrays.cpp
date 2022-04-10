@@ -15,7 +15,7 @@ class Solution{
         sort(a,a+n);
         sort(b,b+m);
         
-        int i{0},j{0},ans{0};
+        int i{},j{},ans{};
         
         while(i<n && j<m){
             
