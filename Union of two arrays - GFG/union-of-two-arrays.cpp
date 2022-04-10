@@ -9,45 +9,57 @@ using namespace std;
 
 class Solution{
     public:
+    bool binarySearch(vector<int>& v, int x){
+        int l{},h=v.size()-1;
+        
+        while(l<=h){
+            int mid=(l+h)/2;
+            
+            if(v[mid]==x)
+                return false;
+            else if(v[mid]<x)
+                l=mid+1;
+            else
+                h=mid-1;
+        }
+        return true;
+    }
+    
     //Function to return the count of number of elements in union of two arrays.
     int doUnion(int a[], int n, int b[], int m)  {
         //code here
+        sort(a,a+n);
+        sort(b,b+m);
         
-        /* Method 1: using set 0.8s
-        
-        unordered_set<int> s(a,a+n);
-
-        for(int i=0;i<m;++i)
-            s.insert(b[i]);
-            
-        return s.size();
-        */
-        
-        // Method 2: using mapping  0.9s
-        
-        unordered_map<int,int> map;
-        int mn= n<m? n:m;
-        
-        for(int i=0;i<mn;++i){
-            if(!map[a[i]])
-                ++map[a[i]];
-            if(!map[b[i]])
-                ++map[b[i]];
+        int i=0,j=0,ans=0;
+        while(i<n && j<m){
+            while(i<n-1 && a[i]==a[i+1]) i++;
+            while(j<m-1 && b[j]==b[j+1]) j++;
+            if(i<n && j<m){
+                if(a[i]<b[j]){
+                    ans++;
+                    i++;
+                }else if(a[i]>b[j]){
+                    ans++;
+                    j++;
+                }else{
+                    ans++;i++;j++;
+                }
+            }
         }
-         
-         if(!(mn^n)) {
-             for(int i=n;i<m;++i)
-                 if(!map[b[i]])
-                    ++map[b[i]];
-         } 
-          else {
-             for(int i=m;i<n;++i)
-                 if(!map[a[i]])
-                    ++map[a[i]];
-         } 
-        
-        return map.size();
-        
+        while(i<n){
+        while(i<n-1 && a[i]==a[i+1]) i++;
+        ans++;
+        i++;
+        }
+        while(j<m){
+            while(j<m-1 && b[j]==b[j+1]) j++;
+            ans++;
+            j++;
+            
+        }
+
+return ans;
     }
 };
 
