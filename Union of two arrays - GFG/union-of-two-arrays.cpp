@@ -74,16 +74,14 @@ class Solution{
         
         vector<int> v1{},v2{};
         
-        for(int i=0;i<n;){
-            v1.emplace_back(a[i++]);
-            
-            while(i<n && a[i]==a[i-1]) ++i;
+        for(int i=0;i<n;++i){
+            while(i<n-1 && a[i]==a[i+1]) ++i;
+            v1.emplace_back(a[i]);
         }
         
-        for(int i=0;i<m;){
-            v2.emplace_back(b[i++]);
-            
-            while(i<m && b[i]==b[i-1]) ++i;
+        for(int i=0;i<m;++i){
+            while(i<m-1 && b[i]==b[i+1]) ++i;
+            v2.emplace_back(b[i]);
         }
         
         int ans=v2.size();
