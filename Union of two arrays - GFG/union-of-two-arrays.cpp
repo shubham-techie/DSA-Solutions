@@ -9,57 +9,46 @@ using namespace std;
 
 class Solution{
     public:
-    bool binarySearch(vector<int>& v, int x){
-        int l{},h=v.size()-1;
-        
-        while(l<=h){
-            int mid=(l+h)/2;
-            
-            if(v[mid]==x)
-                return false;
-            else if(v[mid]<x)
-                l=mid+1;
-            else
-                h=mid-1;
-        }
-        return true;
-    }
-    
     //Function to return the count of number of elements in union of two arrays.
     int doUnion(int a[], int n, int b[], int m)  {
         //code here
         sort(a,a+n);
         sort(b,b+m);
         
-        int i=0,j=0,ans=0;
+        int i{0},j{0},ans{0};
+        
         while(i<n && j<m){
-            while(i<n-1 && a[i]==a[i+1]) i++;
-            while(j<m-1 && b[j]==b[j+1]) j++;
-            if(i<n && j<m){
-                if(a[i]<b[j]){
-                    ans++;
-                    i++;
-                }else if(a[i]>b[j]){
-                    ans++;
-                    j++;
-                }else{
-                    ans++;i++;j++;
-                }
-            }
-        }
-        while(i<n){
-        while(i<n-1 && a[i]==a[i+1]) i++;
-        ans++;
-        i++;
-        }
-        while(j<m){
-            while(j<m-1 && b[j]==b[j+1]) j++;
-            ans++;
-            j++;
             
+            if(a[i]==b[j]){
+                ++ans;
+                ++i;
+                ++j;
+            }
+            else if(a[i]<b[j]){
+                ++ans;
+                ++i;
+            }
+            else if(a[i]>b[j]){
+                ++j;
+                ++ans;
+            }
+            
+            while(i<n && a[i]==a[i-1]) ++i;
+            while(j<m && b[j]==b[j-1]) ++j;
         }
-
-return ans;
+        
+        while(i<n){
+            ++i;
+            ++ans;
+            while(i<n && a[i]==a[i-1]) ++i;
+        }
+        
+        while(j<m){
+            ++j;
+            ++ans;
+            while(j<m && b[j]==b[j-1]) ++j;
+        }
+        return ans;
     }
 };
 
