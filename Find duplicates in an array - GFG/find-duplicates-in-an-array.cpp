@@ -5,23 +5,19 @@ using namespace std;
  // } Driver Code Ends
 class Solution{
   public:
-    vector<int> duplicates(int numRay[], int arr_size) {
+    vector<int> duplicates(int arr[], int n) {
         // code here
-         for (int i = 0; i < arr_size; i++) {
-        numRay[numRay[i] % arr_size]= numRay[numRay[i] % arr_size] + arr_size;
-    }
-    
-    vector<int> v{};
-    
-    for (int i = 0; i < arr_size; i++) {
-        if (numRay[i] >= arr_size * 2) {
-            v.emplace_back(i);
-        }
-    }
-    if(!v.size()){
-        v.emplace_back(-1);
-    }
-    return v;
+        for(int i=0;i<n;++i)
+            arr[arr[i]%n]=arr[arr[i]%n]+n;
+            
+        vector<int> v{};
+        for(int i=0;i<n;++i)
+            if(arr[i]>=2*n)
+                v.emplace_back(i);
+                
+        if(!v.size())
+            v.emplace_back(-1);
+        return v;
     }
 };
 
