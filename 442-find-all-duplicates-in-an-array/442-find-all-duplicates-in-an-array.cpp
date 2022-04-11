@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
        
-        /* sort(begin(nums),end(nums));
+         sort(begin(nums),end(nums));
         
         vector<int> v{};
         int n=nums.size();
@@ -20,7 +20,7 @@ public:
             }
         }
         return v;
-        */
+        /*
         
         vector<int> v{};
         int n=nums.size();
@@ -37,5 +37,6 @@ public:
                 v.emplace_back(i+1);
         
         return v;
+        */
     }
 };
