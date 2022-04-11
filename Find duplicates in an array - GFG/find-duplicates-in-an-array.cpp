@@ -7,8 +7,10 @@ class Solution{
   public:
     vector<int> duplicates(int arr[], int n) {
         // code here
-        for(int i=0;i<n;++i)
-            arr[arr[i]%n]+=n;
+        for(int i=0;i<n;++i){
+            int idx{arr[i]%n};
+            arr[idx]+=n;
+        }
             
         vector<int> v{};
         for(int i=0;i<n;++i)
