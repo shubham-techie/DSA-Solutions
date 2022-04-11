@@ -22,7 +22,9 @@ public:
         return v;
         */
         
-        /* 
+        
+        /*  Since all element are in [1,n]. so decre it by -1 .... to be it in range of indices i.e in [0,n-1]. Now, for each 'x'th element (think of it as indices), incre num[x] th element by n......so that each 'x' which are repeated will be greater than 2*n. (Do mod n wherever necessary).
+        
         vector<int> v{};
         int n=nums.size();
         
@@ -40,6 +42,8 @@ public:
         return v;
         */
         
+        
+        /* In this method, we move each 'x' element to nums[x-1] index. And if any 'x' are repeated, then it would occupy any random place.
         int n=nums.size();
         vector<int> v{};
         
@@ -54,6 +58,19 @@ public:
             if(nums[i]!=i+1)
                 v.emplace_back(nums[i]);
         
+        return v;
+        */
+        
+        
+        // 
+        vector<int> v{};
+        int n=nums.size();
+        
+        for(int i=0;i<n;++i){
+            if(nums[abs(nums[i])-1]<0)
+                v.emplace_back(abs(nums[i]));
+            nums[abs(nums[i])-1]=-nums[abs(nums[i])-1];
+        }
         return v;
     }
 };
