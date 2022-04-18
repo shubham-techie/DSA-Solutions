@@ -2,15 +2,14 @@ class Solution {
 public:
     vector<int> getRow(int rowIndex) {
         
-        vector<vector<int>> v(rowIndex+1);
+        long tmp{1};
+        vector<int> v(rowIndex+1,1);
         
-        for(int i=0;i<=rowIndex;++i){
-            v[i].resize(i+1,1);
-            
-            for(int j=1;j<i;++j)
-                v[i][j]=v[i-1][j] + v[i-1][j-1];
+        for(int i=1,up=rowIndex,down=1;i<rowIndex;++i,--up,++down){
+            tmp=tmp*up/down;
+            v[i]=tmp;
         }
         
-        return v[rowIndex];
+        return v;
     }
 };
