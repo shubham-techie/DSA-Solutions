@@ -42,34 +42,28 @@ public:
         */
         
         
-        int m=v.size(), n=v[0].size(), col0{1},row0{1};
-        
-        for(int i=0;i<n;++i)
-            if(!(v[0][i]^0))
-                row0=0;
-        
-          for(int i=0;i<m;++i)
-             if(!(v[i][0]^0))
+        int m=v.size(), n=v[0].size(), col0{1};
+    
+        for(int i=0;i<m;++i){
+            
+            if(!(v[i][0]^0))
                  col0=0;
-        
-        for(int i=1;i<m;++i)
+            
             for(int j=1;j<n;++j)
                 if(!(v[i][j]^0)){
                     v[i][0]=0;
                     v[0][j]=0;
                 }
+        }
         
-        for(int i=m-1;i>0;--i)
-            for(int j=n-1;j>0;--j)
+        for(int i=m-1;i>=0;--i){
+            for(int j=n-1;j>=1;--j)
                 if(!(v[i][0]^0) || !(v[0][j]^0))
                     v[i][j]=0;
-        
-        for(int i=0;i<n;++i)
-            if(!(row0^0))
-                v[0][i]=0;
-        
-        for(int i=0;i<m;++i)
-            if(!(col0^0))
+            
+             if(!(col0^0))
                 v[i][0]=0;
+        }
+   
     }
 };
