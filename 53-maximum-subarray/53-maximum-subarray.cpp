@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
         
-        /* Method 1 : Naive approach using two pointer 
+        /* Method 1 : Brute force using two pointer 
         
         int maxSum{INT_MIN}, n=nums.size();
         
@@ -19,7 +19,7 @@ public:
         */
         
         // Method 2: Kadane's Algorithm
-        int maxSum{INT_MIN}, sum{};
+        int maxSum{nums[0]}, sum{};
         
         for(int& i:nums){
             sum=max(sum+i,i);
