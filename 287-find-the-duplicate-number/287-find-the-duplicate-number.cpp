@@ -17,6 +17,6 @@ public:
             if(nums[nums[i]%n]>2*n)
                 return nums[i]%n;
         }
-        return nums[n-1]%n;
+        return -1;
     }
 };
