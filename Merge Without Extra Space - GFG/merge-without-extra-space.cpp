@@ -57,7 +57,7 @@ class Solution{
             
             
             // Gap method
-            int gap=ceil(m+n/2.0);
+            int gap=ceil((m+n)/2.0);
             
             while(gap>0){
                 
