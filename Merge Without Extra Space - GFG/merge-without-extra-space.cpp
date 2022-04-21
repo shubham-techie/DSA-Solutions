@@ -51,10 +51,7 @@ class Solution{
                         swap(arr2[i-n],arr2[j-n]);
                 }
               
-                if (gap == 1) 
-                    gap = 0;
-                else 
-                    gap = ceil((float) gap / 2);
+                gap=(!(gap^1))? 0 : ceil(gap/2.0);
             }
         } 
 };
