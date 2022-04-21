@@ -9,20 +9,41 @@ class Solution{
         //Function to merge the arrays.
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
-            // code here 
-            // for(int i=0;i<n;++i){
-            //     if(arr1[i]>arr2[0])
-            //         swap(arr1[i],arr2[0]);
+            // code here
+            
+            /*
+            for(int i=0;i<n;++i){
+                if(arr1[i]>arr2[0])
+                    swap(arr1[i],arr2[0]);
                     
-            //     int tmp=arr2[0],j{};
+                int tmp=arr2[0],j{};
                 
-            //     for(j=1;j<m;++j)
-            //         if(arr2[j]<tmp)
-            //             arr2[j-1]=arr2[j];
-            //         else 
-            //             break;
-            //     arr2[j-1]=tmp;
-            // }
+                for(j=1;j<m;++j)
+                    if(arr2[j]<tmp)
+                        arr2[j-1]=arr2[j];
+                    else 
+                        break;
+                arr2[j-1]=tmp;
+            }
+            */
+            
+            
+            /*
+            for(int i=m-1;i>=0;--i){
+                if(arr1[n-1]>arr2[i])
+                    swap(arr1[n-1],arr2[i]);
+                    
+                int tmp{arr1[n-1]},j{};
+                
+                for(j=n-2;j>=0;--j)
+                    if(arr1[j]>tmp)
+                        arr1[j+1]=arr1[j];
+                    else
+                        break;
+                arr1[j+1]=tmp;
+            }
+            */
+            
             
             /*
             for(int i{n-1}, j{};i>=0 && j<m;--i,++j)
@@ -34,8 +55,9 @@ class Solution{
             sort(arr2,arr2+m);
             */
             
-            //Gap method
-            int gap=ceil(m+n)/2.0;
+            
+            // Gap method
+            int gap=ceil(m+n/2.0);
             
             while(gap>0){
                 
@@ -53,6 +75,7 @@ class Solution{
               
                 gap=(!(gap^1))? 0 : ceil(gap/2.0);
             }
+            
         } 
 };
 
