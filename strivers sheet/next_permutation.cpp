@@ -1,0 +1,26 @@
+[https://leetcode.com/problems/next-permutation/]
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        
+        int n=nums.size(),k{n-2},l{n-1};
+        
+        for(;k>=0;--k)
+            if(nums[k]<nums[k+1])
+                break;
+            
+        if(k<0)
+            reverse(nums.begin(),nums.end());
+        else{
+            
+            for(;l>k;--l)
+                if(nums[l]>nums[k])
+                    break;
+            
+            swap(nums[k],nums[l]);
+            
+            reverse(nums.begin()+k+1,nums.end());
+        }
+    }
+};
