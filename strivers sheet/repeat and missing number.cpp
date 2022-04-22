@@ -1,3 +1,5 @@
+[https://www.codingninjas.com/codestudio/problems/873366?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=0]
+
 #include<bits/stdc++.h>
 
 pair<int,int> missingAndRepeating(vector<int> &v, int n)
