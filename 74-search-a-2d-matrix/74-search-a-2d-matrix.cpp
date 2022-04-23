@@ -21,7 +21,7 @@ public:
         
         int m=matrix.size(), n=matrix[0].size();
         
-        /*
+        /* Method 1: Applying Binary search in each row . TC: O(m*log(n))
         for(auto& it:matrix){
             
             int l{}, h{n-1};
@@ -41,6 +41,8 @@ public:
         return false;
         */
         
+        
+        /* Applying Binary search to select row in which target can lie. And then applying binary search in that particular row. TC: O(log(m) + log(n)) = O(log(m*n))
         if(t<matrix[0][0] || t>matrix[m-1][n-1])
             return false;
         
@@ -59,6 +61,26 @@ public:
             
             else if(t>it[n-1])
                 low_r=mid_r+1;
+        }
+        
+        return false;
+        */
+        
+        
+        // Considering 2D matrix as 1D array and applying Binary Search. TC: O(log(m*n))
+        int l{}, h{m*n-1};
+        
+        while(l<=h){
+            int mid=(l+h)/2;
+            
+            if(!(matrix[mid/n][mid%n]^t))
+                return true;
+            
+            if(matrix[mid/n][mid%n]>t)
+                h=mid-1;
+            
+            else if(matrix[mid/n][mid%n]<t)
+                l=mid+1;   
         }
         
         return false;
