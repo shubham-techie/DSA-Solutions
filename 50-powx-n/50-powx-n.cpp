@@ -1,21 +1,17 @@
 class Solution {
 public:
-    double myPow(double x, int n1) {     
+    double myPow(double x, int n) {     
         
         double tmp{1};
-        long long n{n1};
-        
-        n=n<0? n*-1 : n;
-        
+                
          while(n){
-            if(n&1){
-                tmp*=x;
-            }
+            if(n&1)
+                tmp=n>0? tmp*x : tmp/x;
+            
             x*=x;
-            n>>=1;
+            n/=2;
         }
         
-        tmp=n1<0? 1/tmp : tmp;
         return tmp;
     }
 };
