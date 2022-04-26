@@ -10,7 +10,6 @@ public:
          while(n){
             if(n&1){
                 tmp*=x;
-                n-=1;
             }
             x*=x;
             n>>=1;
