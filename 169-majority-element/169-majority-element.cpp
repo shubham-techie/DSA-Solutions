@@ -5,7 +5,7 @@ public:
         
         for(int& i:nums){
             maj= cnt==0? i : maj;
-            cnt+= i==maj? -1 : 1;
+            cnt= (i==maj)? ++cnt : --cnt;
         }
         return maj;
     }
