@@ -1,17 +1,27 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        unordered_map<int,int> map{};
-        vector<int> v{};
-        int n=nums.size();
+        int n=nums.size(), maj1{}, maj2{}, cnt1{},cnt2{};
         
         for(int& i:nums)
-            ++map[i];
+            if(maj1==i) ++cnt1;
+            else if(maj2==i) ++cnt2;
+            else if(cnt1==0) cnt1=1, maj1=i;
+            else if(cnt2==0) cnt2=1, maj2=i;
+            else --cnt1, --cnt2;
         
-        for(auto& it:map)
-            if(it.second >n/3)
-                v.emplace_back(it.first);
+        cnt1=0, cnt2=0;
+        for(int& i:nums)
+            if(i==maj1) ++cnt1;
+            else if(i==maj2) ++cnt2;
+                
+        if(cnt1>n/3 && cnt2<=n/3)
+            return {maj1};
+        if(cnt2>n/3 && cnt1<=n/3)
+            return {maj2};
+        if(cnt1>n/3 && cnt2>n/3)
+            return {maj1,maj2};
         
-        return v;
+        return {};
     }
 };
