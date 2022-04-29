@@ -11,31 +11,27 @@ public:
                  break;
              }
         
-//         int a=m;
-//         for(int i=l;i<m;++i){
-//             while(a<=r && nums[i]> 2LL*nums[a])
-//                 ++a;
-//             cnt+=a-m;
+        
+//         vector<int> tmp(r-l+1);
+//         int i{l}, j{m}, k{};
+        
+//         while(i<m && j<=r){
+//             if(nums[i]<nums[j])
+//                 tmp[k++]=nums[i++];
+//             else 
+//                 tmp[k++]=nums[j++];
 //         }
         
-        vector<int> tmp(r-l+1);
-        int i{l}, j{m}, k{};
+//         while(i<m)
+//             tmp[k++]=nums[i++];
+//         while(j<=r)
+//             tmp[k++]=nums[j++];
         
-        while(i<m && j<=r){
-            if(nums[i]<nums[j])
-                tmp[k++]=nums[i++];
-            else 
-                tmp[k++]=nums[j++];
-        }
+//         for(int i=l;i<=r;++i)
+//             nums[i]=tmp[i-l];
         
-        while(i<m)
-            tmp[k++]=nums[i++];
-        while(j<=r)
-            tmp[k++]=nums[j++];
         
-        for(int i=l;i<=r;++i)
-            nums[i]=tmp[i-l];
-        
+        sort(nums.begin()+l,nums.begin()+r+1);
         return cnt;
     }
     
