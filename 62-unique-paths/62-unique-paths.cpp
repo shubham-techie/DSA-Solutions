@@ -7,8 +7,15 @@ public:
     }
     
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(m-1, vector<int>(n-1,-1));
+        // vector<vector<int>> dp(m-1, vector<int>(n-1,-1));
+        // return computePath(m,n,0,0, dp);
         
-        return computePath(m,n,0,0, dp);
+        //Solving with nCr
+        int N{m+n-2}, r{m<n? m-1: n-1};
+        long long res{1};
+        
+        for(int i=1;i<=r;++i)
+            res=res* (N-r+i)/i;
+        return res;
     }
 };
