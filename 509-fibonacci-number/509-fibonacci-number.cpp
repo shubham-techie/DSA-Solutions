@@ -5,8 +5,7 @@ public:
         
         if(dp[n]!=-1) return dp[n];
         
-        dp[n]=fibo(n-1,dp) + fibo(n-2,dp);
-        return dp[n];
+        return dp[n]=fibo(n-1,dp) + fibo(n-2,dp);;
     }
     
     int fib(int n) {
