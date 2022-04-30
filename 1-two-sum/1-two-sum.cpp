@@ -13,8 +13,9 @@ public:
         return {};
         */
         
-        int n=nums.size();
+        int n=nums.size(), l{}, r{n-1};
         unordered_map<int, vector<int>> map;
+        vector<int> res;
         
         // mapping indices
         for(int i=0;i<n;++i)
@@ -23,19 +24,18 @@ public:
         //sorting
         sort(begin(nums),end(nums));
         
-        int l{}, r{n-1};
-        vector<int> res;
-        
         //finding the 2 elements 
         while(l<r){
-            if(nums[l]==t-nums[r]){
+            long long sum=nums[l]+nums[r];
+            
+            if(sum==t){
                 res.insert(res.end(),{nums[l],nums[r]});
                 break;
             }
             
-            if(nums[l]<t-nums[r])
+            if(sum<t)
                 ++l;
-            else if(nums[l]>t-nums[r])
+            else if(sum>t)
                 --r;
         }
         
