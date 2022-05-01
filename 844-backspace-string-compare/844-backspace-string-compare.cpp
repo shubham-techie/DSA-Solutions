@@ -27,6 +27,17 @@ public:
         return res;
     }
     
+    stack<char> processString1(string s){
+        stack<char> s1;
+        
+        for(auto& i:s)
+            if(i=='#' && !s1.empty())
+                s1.pop();
+            else if(i!='#')
+                s1.push(i);
+        return s1;
+    }
+    
     bool backspaceCompare(string s, string t) {
         /*
         int sn{}, tn{};
@@ -43,8 +54,17 @@ public:
         return true;
         */
         
+        
+        /*
         s=processString(s);
         t=processString(t);
         return s==t;
+        */
+        
+        
+        stack<char> s1=processString1(s);
+        stack<char> t1=processString1(t);
+        
+        return s1==t1;
     }
 };
