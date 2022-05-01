@@ -9,6 +9,11 @@ public:
                 --k;
                 k=max(0,k);
             }
+        
+        if(k>0)
+            s=s.substr(0,k);
+        else
+            s="";
     }
     
     string processString(string s){
@@ -39,20 +44,21 @@ public:
     }
     
     bool backspaceCompare(string s, string t) {
-        /*
+        
         int sn{}, tn{};
         
         processString(s, sn);
         processString(t, tn);
         
-        if(sn!=tn)
-            return false;
+        return s==t;
+//         if(sn!=tn)
+//             return false;
         
-        for(int i=0;i<sn;++i)
-            if(s[i]!=t[i])
-                return false;
-        return true;
-        */
+//         for(int i=0;i<sn;++i)
+//             if(s[i]!=t[i])
+//                 return false;
+//         return true;
+        
         
         
         /*
@@ -61,10 +67,10 @@ public:
         return s==t;
         */
         
-        
+        /*
         stack<char> s1=processString1(s);
         stack<char> t1=processString1(t);
-        
         return s1==t1;
+        */
     }
 };
