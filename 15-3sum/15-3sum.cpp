@@ -7,7 +7,7 @@ public:
         sort(nums.begin(),nums.end());
         
         for(int i=0;i<n-2;++i){
-            if(i==0 || (i>0 && nums[i]!=nums[i-1])){
+            if(i==0 || nums[i]!=nums[i-1]){
                 int l{i+1}, r{n-1}, target=-nums[i];
 
                 while(l<r)
