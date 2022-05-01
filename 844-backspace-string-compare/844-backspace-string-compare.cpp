@@ -1,6 +1,7 @@
 class Solution {
 public:
-    void processString(string& s, int& k){
+    void processString1(string& s){
+        int k{};
         
         for(int i=0;i<s.length();++i)
             if(s[i]!='#')
@@ -10,13 +11,10 @@ public:
                 k=max(0,k);
             }
         
-        if(k>0)
-            s=s.substr(0,k);
-        else
-            s="";
+        s=s.substr(0,k);
     }
     
-    string processString(string s){
+    string processString2(string s){
         string res="";
         int bs{};
         
@@ -32,7 +30,7 @@ public:
         return res;
     }
     
-    stack<char> processString1(string s){
+    stack<char> processString3(string s){
         stack<char> s1;
         
         for(auto& i:s)
@@ -45,31 +43,20 @@ public:
     
     bool backspaceCompare(string s, string t) {
         
-        int sn{}, tn{};
-        
-        processString(s, sn);
-        processString(t, tn);
-        
+        processString1(s);
+        processString1(t);
         return s==t;
-//         if(sn!=tn)
-//             return false;
-        
-//         for(int i=0;i<sn;++i)
-//             if(s[i]!=t[i])
-//                 return false;
-//         return true;
-        
         
         
         /*
-        s=processString(s);
-        t=processString(t);
+        s=processString2(s);
+        t=processString2(t);
         return s==t;
         */
         
         /*
-        stack<char> s1=processString1(s);
-        stack<char> t1=processString1(t);
+        stack<char> s1=processString3(s);
+        stack<char> t1=processString3(t);
         return s1==t1;
         */
     }
