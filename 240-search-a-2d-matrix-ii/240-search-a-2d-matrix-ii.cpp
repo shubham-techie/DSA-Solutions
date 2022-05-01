@@ -17,6 +17,7 @@ public:
     }
     
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        /*
         int n=matrix[0].size();
         
         for(auto& v:matrix)
@@ -24,8 +25,22 @@ public:
               return true;
         
         return false;
+        */
         
         
-   
+        int m=matrix.size(), n=matrix[0].size();
+        int rt{}, ct{n-1}, rb{m-1}, cb{};
+        
+        while(rt<m && ct>=0 && rb>=0 && cb<n && rt<=rb && cb<=ct){
+            if(matrix[rt][ct]==target || matrix[rb][cb]==target)
+                return true;
+            
+            if(matrix[rt][ct]<target) ++rt;
+            else --ct;
+            
+            if(matrix[rb][cb]<target) ++cb;
+            else --rb;
+        }
+        return false;
     }
 };
