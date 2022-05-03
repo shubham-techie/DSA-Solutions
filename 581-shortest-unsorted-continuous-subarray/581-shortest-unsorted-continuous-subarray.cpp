@@ -1,27 +1,45 @@
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
+        int n=nums.size();
+        int si{-1}, gi{};
         
-        vector<int> v{nums};
-        sort(v.begin(),v.end());
-        
-        int l{}, r=nums.size()-1;
-        
-        while(l<=r){
-            if(nums[l]!=v[l] && nums[r]!=v[r])
+        for(int i=0;i<n-1;++i)
+            if(nums[i]>nums[i+1]){
+                si=i;
                 break;
-            
-            if(nums[l]==v[l])
-                ++l;
-            
-            if(nums[r]==v[r])
-                --r;
-            
-            
+            }
+        
+        if(si==-1) return 0;
+        
+        for(int i=n-1;i>0;--i)
+            if(nums[i]<nums[i-1]){
+                gi=i;
+                break;
+            }
+        
+        cout<<gi<<" "<<si;
+        int mn{nums[si]}, mx{nums[si]};
+        
+        for(int i=si+1;i<=gi;++i){
+            if(nums[i]<mn)
+                mn=nums[i];
+            if(nums[i]>mx)
+                mx=nums[i];
         }
         
-        if(l>r)
-            return 0;
-        return r-l+1;
+        for(int i=0;i<si;++i)
+            if(nums[i]>mn){
+                si=i;
+                break;
+            }
+        
+        for(int i=n-1;i>gi;--i)
+            if(nums[i]<mx){
+                gi=i;
+                break;
+            }
+        
+        return gi-si+1;
     }
 };
