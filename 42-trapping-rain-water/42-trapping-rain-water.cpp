@@ -27,7 +27,7 @@ public:
         int leftmax{}, rightmax{} , l{}, r=height.size()-1, cnt{};
         
         while(l<=r){
-            if(height[l]<=height[r]){      // or leftmax < rightmax
+            if(leftmax<=rightmax){
                 leftmax= max(leftmax, height[l]);
                 cnt+= leftmax-height[l];
                 ++l;
