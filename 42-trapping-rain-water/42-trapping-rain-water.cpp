@@ -2,6 +2,8 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         
+        /* M1 : Maintaining leftmax and rightmax array till that point 
+        // TC : O(3n) | SC : O(2n)
         int n=height.size();
         vector<int> maxrhs(n), maxlhs(n);
         
@@ -18,5 +20,26 @@ public:
             sum+=min(maxlhs[i],maxrhs[i]) - height[i];
         
         return sum;
+        */
+        
+        
+        // M2 : Space optimization of above approach
+        int leftmax{}, rightmax{} , l{}, r=height.size()-1, cnt{};
+        
+        while(l<=r){
+            if(leftmax<rightmax){
+                leftmax= max(leftmax, height[l]);
+                cnt+= leftmax-height[l];
+                ++l;
+                
+            }
+            else{
+                rightmax=max(rightmax, height[r]);
+                cnt+=rightmax-height[r];
+                --r;
+            }
+        }
+        
+        return cnt;
     }
 };
