@@ -5,15 +5,12 @@ public:
     }
     
     void push(int x) {
-        queue<int> q2{};
-        q2.push(x);
+        q1.push(x);
         
-        while(!q1.empty()){
-            q2.push(q1.front());
+        for(int i=0;i<q1.size()-1;++i){
+            q1.push(q1.front());
             q1.pop();
         }
-        
-        q1.swap(q2);
     }
     
     int pop() {
