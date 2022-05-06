@@ -2,32 +2,22 @@ class Solution {
 public:
     string removeDuplicates(string s, int k) {
         int n=s.length();
+        if(n<k) return s;
+        vector<pair<char,int>> stk{};
         
-        stack<pair<char,int>> stk{};
-        
-        for(int i=n-1;i>=0;--i){
+        for(int i=0;i<n;++i){
+
+            if(stk.empty() || stk.back().first!=s[i])
+                stk.push_back({s[i], 0});
             
-            if(stk.empty() || stk.top().first!=s[i]){
-                stk.push({s[i], 1});
-            }
-            else if(stk.top().first==s[i]){
-                stk.top().second+=1;
-            }
-            
-            if(stk.top().second==k){
-                stk.pop();
-            }
+            if(++stk.back().second==k)
+                stk.pop_back();
         }
         
         s="";
-        while(!stk.empty()){
-            auto tmp=stk.top();
-            stk.pop();
-            
-            while(tmp.second--)
-                s+=tmp.first;
-        }
+        for(auto& tmp:stk)
+            s+=string(tmp.second, tmp.first);
         
-        return s;
+         return s;
     }
 };
