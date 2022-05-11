@@ -14,6 +14,7 @@ class Solution {
         backtrack(nums, start+1, l);
     }
     
+    
     public List<List<Integer>> subsets(int[] nums) { 
         /*
         backtrack(nums, 0, new LinkedList<Integer>());
@@ -21,6 +22,7 @@ class Solution {
         */
         
         
+        /*
         List<List<Integer>> resu=new ArrayList<>();
         resu.add(new ArrayList<Integer>());
         
@@ -36,5 +38,21 @@ class Solution {
         }
         
         return resu;
+        */
+        
+        
+        int n=nums.length;
+        int size=1<< n;    //2^n
+        
+        for(int j=0;j<size;++j){
+            List<Integer> l=new ArrayList();
+
+            for(int i=0;i<n;++i)
+                if((j & (1<<i))!=0)
+                    l.add(nums[i]);
+            res.add(l);
+        }
+        
+        return res;
     }
 }
