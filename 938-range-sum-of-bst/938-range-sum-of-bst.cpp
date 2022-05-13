@@ -11,7 +11,21 @@
  */
 class Solution {
 public:
+    int inorderTraversal(TreeNode* root, int low, int high, int& sum){
+        if(root){
+            inorderTraversal(root->left, low, high, sum);
+            
+            int val{root->val};
+            if(val>=low && val<=high)
+                sum+=val;
+            
+            inorderTraversal(root->right, low, high, sum);
+        }
+        
+        return sum;
+    }
     int rangeSumBST(TreeNode* root, int low, int high) {
+        /*
         int sum{};
         
         queue<TreeNode*> q{};
@@ -32,6 +46,12 @@ public:
                 q.push(currNode->right);
         }
         
+        return sum;
+        */    
+        
+        int sum{};
+        
+        inorderTraversal(root, low, high, sum);
         return sum;
     }
 };
