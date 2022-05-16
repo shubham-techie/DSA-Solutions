@@ -12,6 +12,7 @@
 class Solution {
 public:
     int sum{};
+    int maxDepth{};
     
     int height(TreeNode* root){
         if(!root)
@@ -29,6 +30,22 @@ public:
         sum_h(root->left,h-1);
         sum_h(root->right, h-1);
         return sum;
+    }
+    
+    void sumh(TreeNode* root, int currDepth){
+        if(!root)
+            return;
+        
+        if(currDepth>maxDepth){
+            maxDepth=currDepth;
+            sum=0;
+        }
+        
+        if(currDepth==maxDepth)
+            sum+=root->val;
+        
+        sumh(root->left, currDepth+1);
+        sumh(root->right, currDepth+1);
     }
     
     int deepestLeavesSum(TreeNode* root) {
@@ -58,8 +75,12 @@ public:
         return sum;
         */
         
+        /*
         int h=height(root);
-        cout<<h;
         return sum_h(root, h-1);
+        */
+        
+        sumh(root, 1);
+        return sum;
     }
 };
