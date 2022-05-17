@@ -8,10 +8,10 @@ public:
             return;
         }
         
-        if(k<0 || n<0)
-            return;
-        
         for(int j=i;j<10;++j){
+            
+            if(k<0 || n<0) break;
+            
             v.push_back(j);
             backtrack(k-1, n-j, v, j+1);
             v.pop_back();
