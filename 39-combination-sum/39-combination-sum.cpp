@@ -2,42 +2,25 @@ class Solution {
 public:
     vector<vector<int>> res{};
     
-    void backtrack(vector<int>& nums, int i, int sum, vector<int>& v){
-        /*
-        if(i==nums.size()){
-            if(sum==0)
+    void backtrack(vector<int>& a, vector<int> v, int i, int t){
+        if(t==0){
             res.push_back(v);
             return;
         }
         
-        if(nums[i]<=sum){
-            v.push_back(nums[i]);
-            backtrack(nums, i, sum-nums[i], v);
-            v.pop_back();
-        }
-        
-        backtrack(nums, i+1, sum, v);
-        */
-        
-        if(sum<0)
+        if(t<0 || i>=a.size())
             return;
+   
+        backtrack(a, v, i+1, t);
         
-        if(sum==0){
-            res.push_back(v);
-            return;
-        }
-        
-        for(int j=i;j<nums.size();++j){
-            v.push_back(nums[j]);
-            backtrack(nums, j, sum-nums[j], v);
-            v.pop_back();
-        }
+        v.push_back(a[i]);
+        backtrack(a, v, i, t-a[i]);
+        v.pop_back();
     }
     
-    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+    vector<vector<int>> combinationSum(vector<int>& a, int t) {
         vector<int> v{};
-        
-        backtrack(nums, 0, target, v);
+        backtrack(a,v, 0, t);
         return res;
     }
 };
