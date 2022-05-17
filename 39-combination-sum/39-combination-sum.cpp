@@ -15,7 +15,7 @@ public:
         
         v.push_back(a[i]);
         backtrack(a, v, i, t-a[i]);
-        v.pop_back();
+        // v.pop_back();
     }
     
     vector<vector<int>> combinationSum(vector<int>& a, int t) {
