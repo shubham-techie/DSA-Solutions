@@ -2,25 +2,25 @@ class Solution {
 public:
     vector<vector<int>> res{};
     
-    void backtrack(int k, int n, int start, vector<int> v){
-        if(k<0 || n<0)
-            return;
-        
+    void backtrack(int k, int n, vector<int> v, int i){
         if(k==0 && n==0){
             res.push_back(v);
             return;
         }
         
-        for(int i=start;i<10;++i){
-            v.push_back(i);
-            backtrack(k-1, n-i, i+1, v);
+        if(k<0 || n<0)
+            return;
+        
+        for(int j=i;j<10;++j){
+            v.push_back(j);
+            backtrack(k-1, n-j, v, j+1);
             v.pop_back();
         }
     }
     
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<int> v{};
-        backtrack(k, n, 1, v);
+        backtrack(k, n, v, 1);
         return res;
     }
 };
