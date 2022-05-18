@@ -13,7 +13,11 @@ public:
             v.push_back(sum);
             return;
         }
-        backtrack(a, i+1, sum+a[i]);
+        
+        sum+=a[i];
+        backtrack(a, i+1, sum);
+        
+        sum-=a[i];
         backtrack(a, i+1, sum);
     }
 
