@@ -16,11 +16,35 @@ public:
     }
     
     vector<vector<int>> subsetsWithDup(vector<int>& a) {
+        /*
         sort(begin(a), end(a));
         
         vector<int> v{};
         backtrack(a, 0, v);
         
+        return res;
+        */
+        
+        
+        sort(a.begin(), a.end());
+        
+        res.push_back({});
+        int n=a.size(), ptr{}, idx{}, size{};
+        
+        for(int i=0;i<n;++i){
+            
+            int size=res.size();
+           
+            for(int j=idx;j<size;++j){
+                vector<int> tmp(res[j]);
+                tmp.push_back(a[i]);
+                
+                res.push_back(tmp);
+            }
+            
+           idx=(i+1<n && a[i]==a[i+1])? size : 0;
+            
+        }
         return res;
     }
 };
