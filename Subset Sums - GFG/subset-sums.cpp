@@ -6,25 +6,26 @@ using namespace std;
 class Solution
 {
 public:
-    vector<int> v{};
     
-    void backtrack(vector<int>& a, int i, int sum){
+    void backtrack(vector<int>& a, int i, int sum, vector<int>& v){
         if(i==a.size()){
             v.push_back(sum);
             return;
         }
         
         sum+=a[i];
-        backtrack(a, i+1, sum);
+        backtrack(a, i+1, sum, v);
         
         sum-=a[i];
-        backtrack(a, i+1, sum);
+        backtrack(a, i+1, sum, v);
     }
 
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
-        backtrack(arr, 0, 0);
+        vector<int> v{};
+
+        backtrack(arr, 0, 0, v);
         return v;
     }
 };
