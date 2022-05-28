@@ -45,20 +45,23 @@ int main()
     void insert(int arr[], int i)
     {
         // Your code here 
-        int tmp=arr[i];
-        int j=i-1;
-        while(j>=0 && arr[j]>tmp){
-                arr[j+1]=arr[j];
-                --j;
-            }
-            arr[j+1]=tmp;
+      int tmp=arr[i];
+      --i;
+      while(i>=0 && arr[i]>tmp){
+          arr[i+1]=arr[i];
+          --i;
+      }
+      
+       arr[i+1]=tmp; 
+        
     }
     //Function to sort the array using insertion sort algorithm.
     void insertionSort(int arr[], int n)
     {
         //code here
-        for(int i=1;i<n;++i){
-            insert(arr,i);
+        for(int i=0;i<n;++i){
+            
+            insert(arr, i);
         }
     }
 
