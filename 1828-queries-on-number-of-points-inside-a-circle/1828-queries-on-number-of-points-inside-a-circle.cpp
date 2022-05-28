@@ -2,19 +2,20 @@ class Solution {
 public:
     vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries) {
         
-        int i{-1};
-        vector<int>res(queries.size());
-        
-        for(auto& query:queries){
-            int cnt{};
+        int n=queries.size(), i{-1};
+        vector<int> res(n,0);
             
-            for(auto& point:points){
-                float dist=pow(pow(point[0]-query[0],2)+pow(point[1]-query[1],2),0.5);
-                if(dist<=query[2])
-                    ++cnt;
+        for(auto& v:queries){
+            int sum{};
+            
+            for(auto& p:points){
+                if(sqrt(pow(v[0]-p[0],2)+pow(v[1]-p[1], 2)) <=v[2])
+                    ++sum;
             }
-            res[++i]=cnt;
+            
+            res[++i]=sum;
         }
+        
         return res;
     }
 };
