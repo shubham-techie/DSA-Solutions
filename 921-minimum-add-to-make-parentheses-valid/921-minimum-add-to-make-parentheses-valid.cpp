@@ -2,6 +2,7 @@ class Solution {
 public:
     int minAddToMakeValid(string s) {
         
+        /*
         stack<char> stk{};
         int cp{};
         
@@ -17,5 +18,17 @@ public:
         }
         
         return cp+stk.size();
+        */
+        
+        int bal{}, cp{};
+        
+        for(char& c:s){
+            bal+= c=='('? 1:-1;
+            
+            if(bal<0)
+                ++cp, bal=0;
+        }
+        
+        return cp+bal;
     }
 };
