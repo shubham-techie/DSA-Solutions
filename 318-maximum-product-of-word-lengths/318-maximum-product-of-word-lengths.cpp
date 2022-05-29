@@ -1,29 +1,27 @@
 class Solution {
 public:
+    bool iscommon(bitset<26>& a, bitset<26>& b){
+        for(int i=0;i<26;++i)
+            if(a[i] && b[i])
+                return true;
+        return false;
+    }
+    
     int maxProduct(vector<string>& words) {
-        int n=words.size(), mx{};
         
-        for(int i=0;i<n-1;++i){
-            
-            //map current word
-            unordered_map<char, bool> map{};
+        int n=words.size(), mx{};
+        vector<bitset<26>> v(n);
+        
+        for(int i=0;i<n;++i)
             for(char& c:words[i])
-                map[c]=true;
-            
-            //compare current word with all next words
+                v[i][c-'a']=1;
+        
+        for(int i=0;i<n;++i){
             for(int j=i+1;j<n;++j){
-                
-                int k{}, wl=words[j].length();
-                for(;k<wl;++k){
-                    if(map[words[j][k]])
-                        break;
-                }
-                
-                if(k==wl)
-                    mx=max(mx, int(wl*words[i].length()));
+                if(!iscommon(v[i], v[j]))
+                    mx=max(mx, int(words[i].length()*words[j].length()));
             }
         }
-        
         return mx;
     }
 };
