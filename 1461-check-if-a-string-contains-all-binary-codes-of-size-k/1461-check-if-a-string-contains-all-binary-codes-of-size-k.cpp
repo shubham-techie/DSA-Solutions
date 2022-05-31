@@ -26,6 +26,8 @@ public:
         });
         */
         
+        if(s.size()<k) return false;
+        
         unordered_set<string> set{};
         int size=s.size();
             
