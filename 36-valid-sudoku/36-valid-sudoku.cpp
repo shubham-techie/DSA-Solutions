@@ -1,24 +1,26 @@
+typedef vector<unordered_set<char>> vu;
+#define fd(set, ele) set.find(ele)!=set.end()
+#define ins(set, ele) set.insert(a)
+
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        vector<unordered_set<char>> rowset(9);
-        vector<unordered_set<char>> colset(9);
-        vector<vector<unordered_set<char>>> square(3,vector<unordered_set<char>>(3));
+        vu rs(9);
+        vu cs(9);
+        vector<vu> sq(3,vu(3));
         
         for(int i=0;i<9;++i){
             for(int j=0;j<9;++j){
-                char& a=board[i][j];
                 
+                char& a=board[i][j];
                 if(a=='.') continue;
                 
-                if(rowset[i].find(a)!=rowset[i].end() || 
-                   colset[j].find(a)!=colset[j].end() || 
-                  square[i/3][j/3].find(a)!=square[i/3][j/3].end())
+                if(fd(rs[i], a) || fd(cs[j], a) || fd(sq[i/3][j/3], a))
                     return false;
                 
-                rowset[i].insert(a);
-                colset[j].insert(a);
-                square[i/3][j/3].insert(a);
+                ins(rs[i], a);
+                ins(cs[j], a);
+                ins(sq[i/3][j/3], a);
             }
         }
         
