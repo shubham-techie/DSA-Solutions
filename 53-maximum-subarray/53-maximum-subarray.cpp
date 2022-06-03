@@ -19,13 +19,21 @@ public:
         */
         
         // Method 2: Kadane's Algorithm
-        int maxSum{nums[0]}, sum{};
+//         int maxSum{nums[0]}, sum{};
+        
+//         for(int& i:nums){
+//             sum=max(sum+i,i);
+//             maxSum=max(sum,maxSum);
+//         }
+        
+        int sum{}, mxSum{nums[0]};
         
         for(int& i:nums){
-            sum=max(sum+i,i);
-            maxSum=max(sum,maxSum);
+            sum+=i;
+            mxSum=max(mxSum,sum);
+            if(sum<0)
+                sum=0;
         }
-        
-        return maxSum;
+        return mxSum;
     }
 };
