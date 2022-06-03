@@ -1,26 +1,32 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int t) {
+    int bSearch(vector<int>& nums, int t, bool leftbias){
         
-        int n=nums.size(), l{}, h=n-1, m{};
+        int idx{-1}, l{}, h=nums.size()-1;
         
         while(l<=h){
-            m=(l+h)/2;
+            int m=(l+h)/2;
             
-            if(!(nums[m]^t))
-                break;
-            
-            if(nums[m]<t)
+            if(nums[m]==t){
+                idx=m;  //store the index
+                if(leftbias) //for finding first position
+                    h=m-1;
+                else
+                    l=m+1;
+            }
+            else if(nums[m]<t)
                 l=m+1;
             else
                 h=m-1;
         }
+        return idx;
+    }
+    
+    vector<int> searchRange(vector<int>& nums, int t) {
         
-        if(l>h) return {-1,-1};
+        int leftPos=bSearch(nums, t, true);
+        int rightPos=bSearch(nums, t, false);
         
-        for(l=m-1;l>=0 && nums[m]==nums[l];--l);
-        for(h=m+1;h<n && nums[m]==nums[h];++h);
-        
-        return {l+1, h-1};
+        return {leftPos, rightPos};
     }
 };
