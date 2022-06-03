@@ -7,16 +7,14 @@ public:
         for(int& i:nums)
             set.insert(i);
         
-        for(auto j:set){
-            if(set.find(j-1)==set.end()){
-                int i=j;
+        for(auto j:set)
+            if(!set.count(j-1)){
                 int k=1;
-                while(set.find(++i)!=set.end())
+                while(set.count(j+k))
                     ++k;
                 
                 mx=max(mx,k);
             }
-        }
         
         return mx;
     }
