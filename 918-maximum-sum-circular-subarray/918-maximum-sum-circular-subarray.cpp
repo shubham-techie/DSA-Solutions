@@ -31,14 +31,24 @@ public:
         int mxsum{nums[0]}, sum1{};
         int mnsum{nums[0]}, sum2{};
         
-        for(int& i:nums){
-            sum1=max(sum1+i,i);
-            mxsum=max(sum1,mxsum);
+//         for(int& i:nums){
+//             sum1=max(sum1+i,i);
+//             mxsum=max(sum1,mxsum);
             
-            sum2=min(sum2+i, i);
+//             sum2=min(sum2+i, i);
+//             mnsum=min(sum2,mnsum);
+            
+//             tsum+=i;
+//         }
+        
+        for(int& i:nums){
+            tsum+=i; sum1+=i; sum2+=i;
+            
+            mxsum=max(sum1,mxsum);
             mnsum=min(sum2,mnsum);
             
-            tsum+=i;
+            if(sum1<0) sum1=0;
+            if(sum2>0) sum2=0;
         }
         
         return mnsum==tsum? mxsum : max(mxsum, tsum-mnsum);
