@@ -4,11 +4,10 @@ public:
         
         int l{}, h=nums.size()-1;
         
-        while(l<h){
-            
+        while(l!=h){
            int m=(l+h)/2;
             
-            if(nums[m]>nums[h])
+            if(nums[m]>nums[h]) //this is abnormal because usually rightmost element is greater in sorted array
                 l=m+1;
             else
                 h=m;
