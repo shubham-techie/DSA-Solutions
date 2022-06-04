@@ -9,7 +9,7 @@ public:
             
             if(nums[m]>nums[h]) //this is abnormal because usually rightmost element is greater in sorted array
                 l=m+1;
-            else
+            else if(nums[m]<=nums[h])
                 h=m;
         }
         return nums[l];
