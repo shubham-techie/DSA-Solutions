@@ -21,10 +21,9 @@ public:
             nums[i]=-nums[i];
         }
         
-        int circularSum=totalSum+kadaneAlgo(nums);
+        int minSum=kadaneAlgo(nums);
+        int circularSum=totalSum + minSum;
         
-        if(circularSum==0)
-            return nonCircularSum;
-        return max(circularSum, nonCircularSum);
+        return -minSum==totalSum? nonCircularSum : max(circularSum, nonCircularSum);
     }
 };
