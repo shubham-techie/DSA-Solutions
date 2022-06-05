@@ -6,9 +6,8 @@ public:
         int cnt{1}, mn{nums[0]}, n=nums.size();
         
         for(int& i:nums){
-            if(i-mn<=k) 
-                continue;
-            ++cnt; mn=i;
+            if(i-mn>k) 
+            ++cnt, mn=i;
         }
         return cnt;
     }
