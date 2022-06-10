@@ -9,26 +9,40 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+# define pb push_back
+
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        stack<TreeNode*> stk{};
-        vector<int> v{};
+        stack<pair<TreeNode*, int>> stk{};
+        vector<int> pre, in, post;
+        if(root) stk.push({root, 1});
         
-        while(1){
-            if(root){
-                stk.push(root);
-                root=root->left;
-            }
-            else{
-                if(!stk.size()) break;
-                root=stk.top();
-                stk.pop();
+        while(stk.size()){
+            auto it=stk.top(); 
+            stk.pop();
+            
+            if(it.second==1){
+                pre.pb(it.first->val);
+                ++it.second;
+                stk.push(it);
                 
-                v.push_back(root->val);
-                root=root->right;
+                if(it.first->left)
+                    stk.push({it.first->left, 1});
             }
+            
+            else if(it.second==2){
+                in.pb(it.first->val);
+                ++it.second;
+                stk.push(it);
+                
+                if(it.first->right)
+                    stk.push({it.first->right, 1});
+            }
+            else
+                post.pb(it.first->val);
         }
-        return v;
+        
+        return in;
     }
 };
