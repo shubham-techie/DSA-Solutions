@@ -12,37 +12,35 @@
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode* root) {
-        stack<TreeNode*> stk{};
-        vector<int> v{};
+        stack<pair<TreeNode*, int>> stk{};
+        vector<int> pre, in, post;
+        if(root) stk.push({root, 1});
         
-        while(1){       //while(root || stk.size())
-            if(root){
-                stk.push(root);
-                root=root->left;
-            }
-            else{
-                if(!stk.size()) break;
-                    
-                TreeNode* tmp=stk.top()->right;
+        while(stk.size()){
+            auto it=stk.top(); 
+            stk.pop();
+            
+            if(it.second==1){
+                pre.push_back(it.first->val);
+                ++it.second;
+                stk.push(it);
                 
-                if(tmp)
-                    root=tmp;
-                else{
-                    auto push= [&](){
-                        tmp=stk.top();
-                        stk.pop();
-                        v.push_back(tmp->val);
-                    };
-                   
-                    push();
-                    //pop all the rightNodes
-                    while(stk.size() && tmp==stk.top()->right){
-                        push();
-                    }//end of while
-                }
+                if(it.first->left)
+                    stk.push({it.first->left, 1});
             }
-        }//end of while
+            
+            else if(it.second==2){
+                in.push_back(it.first->val);
+                ++it.second;
+                stk.push(it);
+                
+                if(it.first->right)
+                    stk.push({it.first->right, 1});
+            }
+            else
+                post.push_back(it.first->val);
+        }
         
-        return v;
+        return post;
     }
 };
