@@ -15,12 +15,14 @@ public:
         stack<TreeNode*> stk{};
         vector<int> v{};
         
-        while(root || stk.size()){
+        while(1){
             if(root){
                 stk.push(root);
                 root=root->left;
             }
             else{
+                if(!stk.size()) break;
+                    
                 TreeNode* tmp=stk.top()->right;
                 
                 if(tmp)
