@@ -15,7 +15,7 @@ public:
         stack<TreeNode*> stk{};
         vector<int> v{};
         
-        while(1){
+        while(1){       //while(root || stk.size())
             if(root){
                 stk.push(root);
                 root=root->left;
@@ -28,15 +28,16 @@ public:
                 if(tmp)
                     root=tmp;
                 else{
-                    tmp=stk.top();
-                    stk.pop();
-                    v.push_back(tmp->val);
-                    
-                    //pop all the rightNodes
-                    while(stk.size() && tmp==stk.top()->right){
+                    auto push= [&](){
                         tmp=stk.top();
                         stk.pop();
                         v.push_back(tmp->val);
+                    };
+                   
+                    push();
+                    //pop all the rightNodes
+                    while(stk.size() && tmp==stk.top()->right){
+                        push();
                     }//end of while
                 }
             }
