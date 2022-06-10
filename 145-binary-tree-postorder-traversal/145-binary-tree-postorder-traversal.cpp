@@ -15,20 +15,31 @@ public:
         stack<TreeNode*> stk{};
         vector<int> v{};
         
-        if(root) stk.push(root);
+        while(root || stk.size()){
+            if(root){
+                stk.push(root);
+                root=root->left;
+            }
+            else{
+                TreeNode* tmp=stk.top()->right;
+                
+                if(tmp)
+                    root=tmp;
+                else{
+                    tmp=stk.top();
+                    stk.pop();
+                    v.push_back(tmp->val);
+                    
+                    //pop all the rightNodes
+                    while(stk.size() && tmp==stk.top()->right){
+                        tmp=stk.top();
+                        stk.pop();
+                        v.push_back(tmp->val);
+                    }//end of while
+                }
+            }
+        }//end of while
         
-        while(!stk.empty()){
-            root=stk.top();
-            stk.pop();
-            v.push_back(root->val);
-            
-            if(root->left) stk.push(root->left);
-            if(root->right) stk.push(root->right);
-        }
-        
-        int n=v.size();
-        for(int i=0;i<n/2;++i)
-            swap(v[i],v[n-i-1]);
         return v;
     }
 };
