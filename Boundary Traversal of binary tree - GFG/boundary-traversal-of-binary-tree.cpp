@@ -127,7 +127,6 @@ void rightBoundary(Node* node, vector<int>& v){
         else node=node->left;
     }
     
-    // v.insert(v.end()-1, tmp.end(), tmp.begin());
     for(int i=tmp.size()-1;i>=0;--i)
         v.push_back(tmp[i]);
 }
