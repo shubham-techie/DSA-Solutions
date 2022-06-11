@@ -15,26 +15,22 @@ public:
         queue<TreeNode*> q{};
         vector<vector<int>> v{};
         if(root) q.push(root);
-        bool flag=true;
+        bool LtoR=true;
         
         while(q.size()){
-            vector<int> tmp{};
+            vector<int> tmp(q.size());
+            int idx= LtoR? 0 : q.size()-1;
             
             for(int i=q.size();i>0;--i){
                 root=q.front();
                 q.pop();
-                tmp.push_back(root->val);
+                tmp[LtoR? idx++ : idx--]=root->val;                
                 
                 if(root->left) q.push(root->left);
                 if(root->right) q.push(root->right);
             }
-           if(!flag){
-               int n=tmp.size();
-            for(int i=0;i<n/2;++i)
-                swap(tmp[i], tmp[n-i-1]);
-           }
-            
-            flag=!flag;
+           
+            LtoR=!LtoR;
              v.push_back(tmp);
         }
         return v;
