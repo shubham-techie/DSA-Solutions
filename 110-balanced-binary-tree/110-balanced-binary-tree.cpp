@@ -15,9 +15,10 @@ public:
         if(!root) return 0;
         int lh=heightBT(root->left);
         int rh=heightBT(root->right);
-            
-        if(abs(lh-rh)>1) return -1;
+           
         if(min(lh,rh)==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
+        
         return 1+ max(lh, rh);
     }
     
