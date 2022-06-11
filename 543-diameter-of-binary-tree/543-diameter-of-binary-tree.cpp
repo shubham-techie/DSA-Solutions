@@ -11,20 +11,20 @@
  */
 class Solution {
 public:
-    int mx{};
     
-    int htBT(TreeNode* root){
+    int htBT(TreeNode* root, int& mx){
         if(!root) return 0;
         
-        int lh=htBT(root->left);
-        int rh=htBT(root->right);
+        int lh=htBT(root->left, mx);
+        int rh=htBT(root->right, mx);
         
         mx=max(mx,lh+rh);
         return 1+max(lh,rh);
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        htBT(root);
+        int mx{};
+        htBT(root, mx);
         return mx;
     }
 };
