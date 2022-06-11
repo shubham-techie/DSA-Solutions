@@ -19,12 +19,12 @@ public:
         
         while(q.size()){
             vector<int> tmp(q.size());
-            int idx= LtoR? 0 : q.size()-1;
+            int idx= LtoR? -1 : q.size();
             
             for(int i=q.size();i>0;--i){
                 root=q.front();
                 q.pop();
-                tmp[LtoR? idx++ : idx--]=root->val;                
+                tmp[LtoR? ++idx : --idx]=root->val;                
                 
                 if(root->left) q.push(root->left);
                 if(root->right) q.push(root->right);
