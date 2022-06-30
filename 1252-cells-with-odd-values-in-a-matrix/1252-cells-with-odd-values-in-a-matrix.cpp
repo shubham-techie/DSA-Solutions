@@ -1,25 +1,20 @@
 class Solution {
 public:
-    int oddCells(int m, int n, vector<vector<int>>& indices) {
+    int oddCells(int m, int n, vector<vector<int>>& ind) {
+        int cnt{};
+        vector<int> row(m,0), col(n,0);
         
-        int oddCount{};
-        
-        vector<vector<int>> matrix(m);
-        for(auto& v:matrix)
-            v.resize(n,0);
-            
-        for(auto& v:indices){    
-            for(int i=0;i<n;++i)
-                ++matrix[v[0]][i];
-            for(int i=0;i<m;++i)
-                ++matrix[i][v[1]];
+        for(auto& it:ind){
+            ++row[it[0]];
+            ++col[it[1]];
         }
         
-        for(auto& v:matrix){
-            for(int& i:v){
-                oddCount+=(i&1);
+        for(int i=0;i<m;++i)
+            for(int j=0;j<n;++j){
+                int val= row[i]+col[j];
+                cnt=cnt+ (val&1);
             }
-        }
-        return oddCount;
+            
+        return cnt;
     }
 };
