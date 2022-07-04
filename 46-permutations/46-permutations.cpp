@@ -1,47 +1,29 @@
 class Solution {
 public:
-    vector<vector<int>> res{};
-    int n{};
-    
-    void backtrack(vector<int>& a, vector<int> v, vector<bool> b){
-        if(v.size()==n)
-            res.push_back(v);
-        
-        for(int i=0;i<n;++i){
-            if(!b[i]){
-                b[i]=true;
-                v.push_back(a[i]);
-                backtrack(a, v, b);
-                
-                b[i]=false;
-                v.pop_back();
-            }
+    void getPermutation(vector<int>& nums, vector<vector<int>>& v, vector<bool> flag, vector<int> tmp){
+        if(tmp.size()==nums.size()){
+            v.push_back(tmp);
+            return;
         }
         
-    }
-    
-    void bt(vector<int>& a, int i){
-        if(i==n)
-            res.push_back(a);
-        
-        for(int j=i;j<n;++j){
-            swap(a[j], a[i]);
-            bt(a, i+1);
-            swap(a[j], a[i]);
+        for(int i=0;i<nums.size();++i)
+            if(!flag[i]){
+            tmp.push_back(nums[i]);
+            flag[i]=!flag[i]; //true : cannot be taken
+            
+            getPermutation(nums, v, flag, tmp);
+            
+            tmp.pop_back();
+            flag[i]=!flag[i];
         }
     }
     
-    vector<vector<int>> permute(vector<int>& a) {
-        n=a.size();
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> v{};
+        vector<bool> flag(nums.size());   //false means elements can be taken
+        vector<int> tmp{};
         
-        /*
-        vector<int> v{};
-        vector<bool> b(n, false);
-        backtrack(a, v, b);
-        */
-        
-        
-        bt(a, 0);
-        return res;
+        getPermutation(nums, v, flag, tmp);
+        return v;
     }
 };
