@@ -12,7 +12,7 @@ public:
         helperCombination(n, k-1, i+1, subset, v);
         subset.pop_back();
         
-        if(n-i+1>=k)
+        if(n-i>=k)
             helperCombination(n,k, i+1,subset, v);
     }
     
