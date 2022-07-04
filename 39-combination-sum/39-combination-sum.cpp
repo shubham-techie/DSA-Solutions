@@ -1,26 +1,27 @@
 class Solution {
 public:
-    vector<vector<int>> res{};
-    
-    void backtrack(vector<int>& a, vector<int> v, int i, int t){
-        if(t==0){
-            res.push_back(v);
+    void helperCombinationSum(vector<int>& nums, int target, vector<vector<int>>& res, vector<int> subset, int idx){
+        if(target==0){
+            res.push_back(subset);
             return;
         }
         
-        if(t<0 || i>=a.size())
-            return;
-   
-        backtrack(a, v, i+1, t);
+        if(target<0 || idx>=nums.size()) return;
         
-        v.push_back(a[i]);
-        backtrack(a, v, i, t-a[i]);
-        // v.pop_back();
+        subset.push_back(nums[idx]);
+        target=target-nums[idx];
+        helperCombinationSum(nums, target, res, subset, idx);
+        target=target+nums[idx];
+        subset.pop_back();
+        
+        helperCombinationSum(nums, target, res, subset, idx+1);
     }
     
-    vector<vector<int>> combinationSum(vector<int>& a, int t) {
-        vector<int> v{};
-        backtrack(a,v, 0, t);
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+        vector<vector<int>> res{};
+        vector<int> subset{};
+        
+        helperCombinationSum(nums, target, res, subset, 0);
         return res;
     }
 };
