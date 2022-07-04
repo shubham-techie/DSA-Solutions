@@ -18,34 +18,43 @@ public:
     }
     
     void generateSubsets(vector<int>& nums, vector<vector<int>>& v, vector<int>& tmp, int idx){
-        if(idx==nums.size()){
-            v.push_back(tmp);
-            return;
+//         if(idx==nums.size()){
+//             v.push_back(tmp);
+//             return;
+//         }
+        
+//         tmp.push_back(nums[idx]);
+//         generateSubsets(nums, v, tmp, idx+1);
+//         tmp.pop_back();
+        
+//         generateSubsets(nums, v, tmp, idx+1);
+        
+        
+        v.push_back(tmp);
+        
+        for(int j=idx;j<nums.size();++j){
+            tmp.push_back(nums[j]);
+            generateSubsets(nums, v, tmp, j+1);
+            tmp.pop_back();
         }
-        
-        tmp.push_back(nums[idx]);
-        generateSubsets(nums, v, tmp, idx+1);
-        
-        tmp.pop_back();
-        generateSubsets(nums, v, tmp, idx+1);
     }
     
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> v{};
-        // vector<int> tmp{};
-        // generateSubsets(nums, v, tmp, 0);
+        vector<int> tmp{};
+        generateSubsets(nums, v, tmp, 0);
         
         
-        int n=nums.size();
-        int total_subsets=1<<n;
+//         int n=nums.size();
+//         int total_subsets=1<<n;
         
-        for(int i=0;i<total_subsets;++i){
-            vector<int> tmp{};
-            for(int j=0;j<n;++j)
-                if(i & 1<<j)
-                    tmp.push_back(nums[j]);
-            v.push_back(tmp);
-        }
+//         for(int i=0;i<total_subsets;++i){
+//             vector<int> tmp{};
+//             for(int j=0;j<n;++j)
+//                 if(i & 1<<j)
+//                     tmp.push_back(nums[j]);
+//             v.push_back(tmp);
+//         }
         return v;
     }
 };
