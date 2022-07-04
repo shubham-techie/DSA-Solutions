@@ -21,7 +21,7 @@ public:
     void getPermutation(vector<int>& nums, vector<vector<int>>& v, int idx){
         if(idx==nums.size()){
             v.push_back(nums);
-            return;
+            // return;
         }
         
         for(int i=idx;i<nums.size();++i){
