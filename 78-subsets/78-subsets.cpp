@@ -9,10 +9,11 @@ public:
         
         generateSubsets(nums, v, idx+1);
         
-        vector<vector<int>> tmp(v.begin(), v.end());
-        for(auto& it:tmp){
-            it.push_back(nums[idx]);
-            v.push_back(it);
+        int s=v.size();
+        for(int i=0;i<s;++i){
+            vector<int> tmp(v[i].begin(), v[i].end());
+            tmp.push_back(nums[idx]);
+            v.push_back(tmp);
         }
     }
     
