@@ -1,33 +1,25 @@
 class Solution {
 public:
+    void generatePermutations(vector<int>& nums, vector<vector<int>>& v, int idx){
+        if(idx+1==nums.size()) 
+            v.push_back(nums);
+        
+        unordered_set<int> mp{};
+        
+        for(int i=idx;i<nums.size();++i){
+            if(mp.count(nums[i])) continue;
+            
+            mp.insert(nums[i]);
+            swap(nums[i], nums[idx]);
+            generatePermutations(nums, v, idx+1);
+            swap(nums[i], nums[idx]);
+        }
+    }
+    
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         
-        vector<vector<int>> v{nums};
-        
-        while(1){
-            int n=nums.size(), k{n-2},l{n-1};
-            
-            for(;k>=0;--k)
-                if(nums[k]<nums[k+1])
-                    break;
-            
-            if(k<0)
-                reverse(begin(nums),end(nums));
-            else{
-                for(;l>k;--l)
-                    if(nums[l]>nums[k])
-                        break;
-                
-                swap(nums[k],nums[l]);
-                reverse(nums.begin()+k+1,end(nums));
-            }
-            
-            if(nums!=v[0])
-                v.emplace_back(nums);
-            else
-                break;
-        }
-        
+        vector<vector<int>> v{};
+        generatePermutations(nums, v, 0);
         return v;
     }
 };
