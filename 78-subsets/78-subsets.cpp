@@ -17,7 +17,7 @@ public:
         }
     }
     
-    void generateSubsets(vector<int>& nums, vector<vector<int>>& v, vector<int> tmp, int idx){
+    void generateSubsets(vector<int>& nums, vector<vector<int>>& v, vector<int>& tmp, int idx){
         if(idx==nums.size()){
             v.push_back(tmp);
             return;
