@@ -6,7 +6,7 @@ public:
             return;
         }
         
-        if(t<0 || idx==nums.size()) return;
+        if(t<0) return;
         
 //         subset.push_back(nums[idx]);
 //         help(nums, t-nums[idx], idx+1, res, subset);
