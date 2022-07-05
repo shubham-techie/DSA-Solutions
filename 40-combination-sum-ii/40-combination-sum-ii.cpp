@@ -1,35 +1,29 @@
 class Solution {
 public:
-    vector<vector<int>> res{};
-    
-    void backtrack(vector<int>& a, vector<int> v, int t, int i){  
+    void help(vector<int>& nums, int t, int idx, vector<vector<int>>& res, vector<int> subset){
         if(t==0){
-            res.push_back(v);
+            res.push_back(subset);
             return;
         }
         
-        if(t<0)
-            return;
+        if(t<0 || idx==nums.size()) return;
         
-        for(int j=i;j<a.size();++j){
-            
-            if(j>i && a[j]==a[j-1]) 
-                continue;
-            
-            v.push_back(a[j]);
-            backtrack(a, v, t-a[j], j+1);
-            v.pop_back();
-            
-            // while(j+1<a.size() && a[j]==a[j+1])
-            //     ++j;
-        }
+        subset.push_back(nums[idx]);
+        help(nums, t-nums[idx], idx+1, res, subset);
+        subset.pop_back();
+        
+        while(idx+1<nums.size() && nums[idx]==nums[idx+1]) ++idx;
+        
+        help(nums, t, idx+1, res, subset);
     }
     
-    vector<vector<int>> combinationSum2(vector<int>& a, int t) {
-        sort(a.begin(), a.end());
+    vector<vector<int>> combinationSum2(vector<int>& nums, int t) {
+        sort(begin(nums), end(nums));
         
-        vector<int> v{};
-        backtrack(a, v, t, 0);
+        vector<vector<int>> res{};
+        vector<int> subset{};
+        
+        help(nums, t, 0, res, subset);
         return res;
     }
 };
