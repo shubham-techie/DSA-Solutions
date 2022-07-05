@@ -1,13 +1,13 @@
 class Solution {
 public:
-    void help(string& digits, int idx, vector<string>& res, string& str, unordered_map<char, string>& mp){
+    void help(string& digits, int idx, vector<string>& res, string str, unordered_map<char, string>& mp){
         if(idx==digits.size()){
             res.push_back(str);
             return;
         }
         
         for(char& c:mp[digits[idx]]){
-            str+=c;
+            str.push_back(c);              // str+=c;
             help(digits, idx+1, res, str, mp);
             str.pop_back();
         }
