@@ -12,7 +12,8 @@ public:
         help(sum-i, size-1, n, i+1, res, subset);
         subset.pop_back();
         
-        help(sum, size, n, i+1, res, subset);
+        if(n-i>=size)
+            help(sum, size, n, i+1, res, subset);
     }
     
     vector<vector<int>> combinationSum3(int size, int sum) {
