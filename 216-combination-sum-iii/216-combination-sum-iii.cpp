@@ -1,24 +1,25 @@
 class Solution {
 public:
-    vector<vector<int>> res{};
-    
-    void dfs(int k, int n, vector<int> v, int i){
-        if(i==10){
-            if(k==0 && n==0)
-                res.push_back(v);
+    void help(int sum, int size, int n, int i, vector<vector<int>>& res, vector<int> subset){
+        if(sum==0 && size==0){
+            res.push_back(subset);
             return;
         }
         
-        v.push_back(i);
-        dfs(k-1, n-i, v, i+1);
-        v.pop_back();
+        if(sum<0 || size<0 || i>n) return;
         
-        dfs(k, n, v, i+1);
+        subset.push_back(i);
+        help(sum-i, size-1, n, i+1, res, subset);
+        subset.pop_back();
+        
+        help(sum, size, n, i+1, res, subset);
     }
     
-    vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int> v{};
-        dfs(k, n, v, 1);
+    vector<vector<int>> combinationSum3(int size, int sum) {
+        vector<vector<int>> res{};
+        vector<int> subset{};
+        
+        help(sum, size, 9, 1, res, subset);
         return res;
     }
 };
