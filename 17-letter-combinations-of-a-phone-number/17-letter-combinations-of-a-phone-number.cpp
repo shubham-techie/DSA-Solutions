@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void help(string& digits, int idx, vector<string>& res, string str, unordered_map<char, string>& mp){
+    void help(string& digits, int idx, vector<string>& res, string& str, unordered_map<char, string>& mp){
         if(idx==digits.size()){
             res.push_back(str);
             return;
@@ -19,9 +19,9 @@ public:
         unordered_map<char, string> mp{
             {'2',"abc"},
             {'3',"def"},
-            {'4', "ghi"},
+            {'4',"ghi"},
             {'5',"jkl"},
-            {'6', "mno"},
+            {'6',"mno"},
             {'7',"pqrs"},
             {'8',"tuv"},
             {'9',"wxyz"}
