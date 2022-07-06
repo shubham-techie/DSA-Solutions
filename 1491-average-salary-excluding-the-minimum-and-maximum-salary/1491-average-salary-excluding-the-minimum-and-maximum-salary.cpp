@@ -2,7 +2,7 @@ class Solution {
 public:
     double average(vector<int>& salary) {
         
-        int mx{salary[1]}, mn{salary[0]}, sum{};
+        int mx{salary[0]}, mn{salary[1]}, sum{};
         
         if(mx<mn) swap(mx,mn);
         
