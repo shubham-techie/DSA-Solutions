@@ -15,6 +15,25 @@ class Solution{
             res.push_back(move);
             return;
         }
+        
+        string dir="DLRU";
+        int dirRow[] = {1,0,0,-1};
+        int dirCol[] = {0,-1,1,0};
+        
+        for(int dirIdx=0;dirIdx<4;++dirIdx){
+            
+            int nextRow = row+dirRow[dirIdx];
+            int nextCol = col+dirCol[dirIdx];
+            
+            if(nextRow>=0 && nextRow<n && nextCol>=0 && nextCol<n && !visited[nextRow][nextCol] && maze[nextRow][nextCol]){
+                visited[row][col]=1;
+                findPaths(maze, move+dir[dirIdx], visited, res, nextRow, nextCol, n);
+                visited[row][col]=0;
+            }    
+        }
+        
+        
+        /*
         //down
         if(row+1<n && !visited[row+1][col] && maze[row+1][col]){
             visited[row][col]=1;
@@ -42,6 +61,7 @@ class Solution{
             findPaths(maze, move+'U', visited, res, row-1, col, n);
             visited[row][col]=0;
         }
+        */
     }
     
     vector<string> findPath(vector<vector<int>> &maze, int n) {
