@@ -1,6 +1,6 @@
 class Solution {
 
-bool Search(vector<vector<char>>& board, string &word,int index, int row, int col)
+bool Search(vector<vector<char>>& board, string word,int index, int row, int col)
 {       
     if(index== word.size())
         return true;
@@ -11,10 +11,11 @@ bool Search(vector<vector<char>>& board, string &word,int index, int row, int co
     char temp = board[row][col];
     board[row][col] = '.';
     
-    bool check = Search(board, word, index+1, row+1, col) || Search(board, word, index+1, row-1, col) ||   Search(board, word, index+1, row , col-1 ) || Search(board, word, index+1, row , col+1) ;
+    if(Search(board, word, index+1, row+1, col) || Search(board, word, index+1, row-1, col) ||   Search(board, word, index+1, row , col-1 ) || Search(board, word, index+1, row , col+1))
+        return true;
     
     board[row][col] = temp;
-    return check;
+    return false;
     
 }
 public:
