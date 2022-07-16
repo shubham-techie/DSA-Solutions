@@ -2,7 +2,7 @@ class Solution {
 
 bool Search(vector<vector<char>>& board, string &word,int index, int row, int col)
 {       
-    if(index>= word.size())
+    if(index== word.size())
         return true;
     
     if(row < 0 || col < 0 || row >= board.size() || col >= board[0].size() || board[row][col] != word[index] )
