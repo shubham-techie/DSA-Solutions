@@ -6,7 +6,7 @@ public:
             g=gcd(g,i);
         
         sort(begin(nums), end(nums));
-        for(int i=0;i<nums.size() && nums[i]<=g;++i)
+        for(int i=0;i<nums.size();++i)
             if(g%nums[i]==0)
                 return i;
         
