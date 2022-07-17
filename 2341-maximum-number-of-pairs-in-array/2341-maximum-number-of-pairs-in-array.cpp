@@ -4,10 +4,7 @@ public:
         int arr[101]={0}, pairs{};
         
         for(int& i:nums)
-            if(++arr[i]%2==0){
-                pairs=pairs+ 1;
-                // arr[i]=0;
-            }
+            pairs += ++arr[i]%2==0? 1:0;            
         
         return {pairs, (int)nums.size()-pairs*2};
         
