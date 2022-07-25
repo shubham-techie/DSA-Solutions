@@ -1,6 +1,6 @@
 class Solution {
     int solve(String s1, String s2, int i, int j, int[][] dp){
-        if(i<0 || j<0) return 0;
+        if(i==-1 || j==-1) return 0;
         
         if(dp[i][j]!=-1) return dp[i][j];
         
