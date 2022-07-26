@@ -11,7 +11,7 @@ public:
         if(rp>n || lp>n || rp>lp)
             return;
         
-        if(lp==n && rp==n){
+        if(lp==rp && lp==n){
             res.push_back(s);
             return;
         }
