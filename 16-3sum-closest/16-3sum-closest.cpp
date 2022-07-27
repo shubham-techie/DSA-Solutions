@@ -16,10 +16,7 @@ public:
                     sum=sm;
                 }
                 
-                if(sm==t){
-                    ++l; --r;
-                }
-                else if(sm>t)
+                if(sm>t)
                     --r;
                 else
                     ++l;
