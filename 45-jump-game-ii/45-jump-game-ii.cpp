@@ -5,7 +5,7 @@ public:
         vector<int> pre(n, INT_MAX);
         pre[0]=0;
         
-        for(int i=0;i<n;++i)
+        for(int i=0;i<n-1;++i)
             for(int j=i;j<=i+nums[i] && j<n;++j)
                 pre[j]= min(pre[j], pre[i]+1);
         
