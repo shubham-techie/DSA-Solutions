@@ -1,41 +1,32 @@
 class Solution {
 public:
     bool isValid(string s) {
-        int n=s.length();
-        vector<char> stk{};
+        stack<char> stk{};
         
         for(char& c:s){
             if(c=='(' || c=='{' || c=='[')
-                stk.push_back(c);
-            
+                stk.push(c);
             else{
-                if(stk.empty())
-                    return false;
+                if(stk.empty()) return false;
                 
-               if(c==')'){
-                   if(stk.back()=='(')
-                       stk.pop_back();
-                   else return false;
-               }
-                
-                else if(c=='}'){
-                     if(stk.back()=='{')
-                       stk.pop_back();
-                   else return false;
+                if(c==')'){
+                    if(stk.top()!='(')
+                        return false;
+                    stk.pop();
                 }
-                
                 else if(c==']'){
-                     if(stk.back()=='[')
-                       stk.pop_back();
-                   else return false;
+                    if(stk.top()!='[')
+                        return false;
+                    stk.pop();
+                }
+                else if(c=='}'){
+                    if(stk.top()!='{')
+                        return false;
+                    stk.pop();
                 }
             }
-            
         }
         
-        if(stk.empty())
-            return true;
-        return false;
-        
+        return stk.empty();
     }
 };
