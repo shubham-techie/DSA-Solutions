@@ -2,7 +2,7 @@ class Solution {
 public:
     int uniqueMorseRepresentations(vector<string>& words) {
         unordered_set<string> st{};
-        unordered_map<char, string> mp{
+        unordered_map<char, string> mpp{
             {'a',".-"},
             {'b',"-..."},
             {'c',"-.-."},
@@ -31,11 +31,13 @@ public:
             {'z',"--.."}
         };  
         
+        vector<string> mp{".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        
         for(string& s:words){
             string tmp="";
             
             for(char& c:s)
-                tmp+=mp[c];
+                tmp+=mp[c-'a'];
             
             st.insert(tmp);
         }
