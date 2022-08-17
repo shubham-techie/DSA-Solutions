@@ -16,7 +16,6 @@ public:
         ListNode* nxt=head->next;
         head->next=swapPairs(nxt->next);
         nxt->next=head;
-        head=nxt;
-        return head;
+        return nxt;
     }
 };
